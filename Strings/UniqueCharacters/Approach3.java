@@ -1,27 +1,21 @@
 package Strings.UniqueCharacters;
-
 import java.util.*;
 
-// sorting based approach
-public class Approach1 {
+// ascii based approach
+// ascii represents 7 bits
+// 2^7 = 128 unique character array needed
+public class Approach3 {
 
     public static boolean UniqueCharacters(String str) {
-
-        char[] charArray = str.toCharArray();
-
-        // sorted array using binary sort java this method uses internally binary sort
-        // time copmlexity for sorting is o(nlogn) how?
-        Arrays.sort(charArray);
-
-        // now check adjancent elements
-        for (int i = 0; i < charArray.length-1; i++) {
-                if(charArray[i]==charArray[i+1]){
-                    // true means repeated
-                    return true;
-                }
+        HashSet<Character> char_set = new HashSet<>();
+        for(int c  = 0; c< str.length();c++)
+        {
+            char_set.add(str.charAt(c));
         }
-        // true means not repeated
-        return false;
+        if (char_set.size() == str.length()) {
+            return false;
+        }
+        return true;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -37,5 +31,4 @@ public class Approach1 {
         sc.close();
     }
 }
-
-// time complexity is :: o(nlogn+n) which is o(nlogn)
+// time complexity is :: o(n)
