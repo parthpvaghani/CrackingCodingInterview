@@ -4,15 +4,23 @@ import java.util.*;
 
 // sorting based approach
 public class Approach1 {
-    
+
     public static boolean UniqueCharacters(String str) {
-        for (int i = 0; i < str.length(); i++) {
-            for (int j = i+1; j < str.length(); j++) {
-                if(str.charAt(i)==str.charAt(j)){
+
+        char[] charArray = str.toCharArray();
+
+        // sorted array using binary sort java this method uses internally binary sort
+        // time copmlexity for sorting is o(nlogn) how?
+        Arrays.sort(charArray);
+
+        // now check adjancent elements
+        for (int i = 0; i < charArray.length-1; i++) {
+                if(charArray[i]==charArray[i+1]){
+                    // true means repeated
                     return true;
                 }
-            }
         }
+        // true means not repeated
         return false;
     }
     public static void main(String[] args) {
@@ -22,10 +30,12 @@ public class Approach1 {
         // now it's time to check its uniqueness
         boolean result =  UniqueCharacters(str);
         if(result){
-            System.out.println("found repeated characters in string"); 
+            System.out.println("found repeated characters in string");
         } else {
             System.out.println(" did not find any repeated chars in given string");
         }
         sc.close();
     }
 }
+
+// time complexity is :: o(nlogn+n) which is o(nlogn)
